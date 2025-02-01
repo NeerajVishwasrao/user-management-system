@@ -11,6 +11,23 @@ import { DeleteUserComponent } from '../models/delete-user/delete-user.component
   styleUrls: ['./user-config.component.css']
 })
 export class UserConfigComponent implements OnInit {
+  sort() {
+    console.log("sort");
+    
+    let property: keyof User = this.sortBy as keyof User; 
+  
+    this.filteredUsers.sort((a, b) => {
+      let valA = a[property]?.toString().toLowerCase() || ''; 
+      let valB = b[property]?.toString().toLowerCase() || '';
+  
+      return valA.localeCompare(valB); 
+    });
+  }
+  
+showAll() {
+  this.filteredUsers = [...this.allUsers]; 
+
+}
   deleteUser(deleteUser: User, i: number) {
     let deleteUserModel = this.dialog.open(DeleteUserComponent, {
       width: '60%',
@@ -22,7 +39,7 @@ export class UserConfigComponent implements OnInit {
     })
     deleteUserModel.afterClosed().subscribe((res) => {
       if (res.isDelete) {
-        this.allUsers.splice(res.index,1)
+        this.allUsers.splice(res.index, 1)
       } else {
         console.log("not deleted");
 
@@ -38,7 +55,10 @@ export class UserConfigComponent implements OnInit {
       }
     })
     addModel.afterClosed().subscribe((user) => {
-      this.allUsers.push(user)
+      if (user) {
+        this.allUsers.push(user)
+
+      }
     })
   }
   animal: any;
@@ -65,6 +85,20 @@ export class UserConfigComponent implements OnInit {
     { name: "swapnali", email: "swapnali@123", role: "User" },
 
   ]
+  filteredUsers: User[] = [...this.allUsers]; // Start with all users
+
+  searchName: string = ''; // Store the search query
+  sortBy: string = ''; // Store the selected sorting property
+searchEmail:string='';
+  // Search Function
+  searchUsers() {
+    this.filteredUsers = this.allUsers.filter(user =>
+      (this.searchName === '' || user.name.toLowerCase().includes(this.searchName.toLowerCase())) &&
+      (this.searchEmail === '' || user.email.toLowerCase().includes(this.searchEmail.toLowerCase()))
+    );
+  }
+  
+
   name: string = "";
 
   pageSize = 5;
@@ -99,10 +133,14 @@ export class UserConfigComponent implements OnInit {
       }
     })
     popup.afterClosed().subscribe((modelRes) => {
-      this.editedUser = modelRes.editedUser
-      this.editedUserIndex = modelRes.index
 
-      this.allUsers[modelRes.index] = modelRes.editedUser
+      if (modelRes) {
+        this.editedUser = modelRes.editedUser
+        this.editedUserIndex = modelRes.index
+
+        this.allUsers[modelRes.index] = modelRes.editedUser
+      }
+
     })
   }
 }

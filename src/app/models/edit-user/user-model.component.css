@@ -1,0 +1,9 @@
+span{
+    color: red;
+}
+.unable{
+    color: green; background-color: white;
+}
+.disable{
+    color: black; background-color: gray;
+}

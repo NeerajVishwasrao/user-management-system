@@ -11,9 +11,13 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class AddUserComponent implements OnInit {
 
   save() {
-    console.log(this.User.value);
-    
-    this.ref.close(this.User.value)
+    if (this.User.valid) {
+      console.log(this.User.value);
+      this.ref.close(this.User.value);
+    } else {
+      this.User.markAllAsTouched();
+    }
+
   }
   close() {
     this.ref.close()

@@ -4,24 +4,30 @@
     <mat-form-field>
         <mat-label>Enter name</mat-label>
         <input matInput  formControlName="name">
+        <span *ngIf="User.controls['name'].errors?.['required'] && User.controls['name'].touched"> name is required</span>
     </mat-form-field>
     
     <mat-form-field>
-        <mat-label>Select</mat-label>
+        <mat-label>Select role</mat-label>
         <mat-select formControlName="role"> 
             <mat-option value="admin">Admin</mat-option>
             <mat-option value="user">User</mat-option>
         </mat-select>
+        <span *ngIf="User.controls['role'].errors?.['required'] && User.controls['role'].touched"> role is required</span>
+
     </mat-form-field>
     
     <mat-form-field>
         <mat-label>Enter email</mat-label>
         <input matInput  formControlName="email">
+        <span *ngIf="User.controls['email'].errors?.['required'] && User.controls['email'].touched"> email is required</span>
+        <span *ngIf="User.controls['email'].errors?.['email'] && User.controls['email'].touched"> email format is wrong</span>
+
     </mat-form-field>
     
     <div mat-dialog-actions>
-        <button mat-raised-button style="color: green; background-color: white;" (click)="save()" >save</button>
-    
+        <button mat-raised-button [class]="User.invalid?'disable':'unable'"  [disabled]="User.invalid" (click)="save()" >save</button>
         <button mat-raised-button style="color: red; " (click)="close()" >close</button>
     </div>
+
     </form>

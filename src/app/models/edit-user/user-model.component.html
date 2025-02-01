@@ -3,6 +3,8 @@
 <mat-form-field>
     <mat-label>Enter name</mat-label>
     <input matInput [value]="inputdata.user.name" formControlName="name">
+    <span *ngIf="editedUser.controls['name'].errors?.['required'] && editedUser.controls['name'].touched"> email is required</span>
+
 </mat-form-field>
 
 <mat-form-field>
@@ -11,15 +13,20 @@
         <mat-option value="admin">Admin</mat-option>
         <mat-option value="user">User</mat-option>
     </mat-select>
+    <span *ngIf="editedUser.controls['role'].errors?.['required'] && editedUser.controls['role'].touched"> email is required</span>
+
 </mat-form-field>
 
 <mat-form-field>
     <mat-label>Enter email</mat-label>
     <input matInput [value]="inputdata.user.email" formControlName="email">
+    <span *ngIf="editedUser.controls['email'].errors?.['required'] && editedUser.controls['email'].touched"> email is required</span>
+        <span *ngIf="editedUser.controls['email'].errors?.['email'] && editedUser.controls['email'].touched"> email format is wrong</span>
+
 </mat-form-field>
 
 <div mat-dialog-actions>
-    <button mat-raised-button style="color: green; background-color: white;" (click)="save(inputdata.user)">save</button>
+    <button mat-raised-button [class]="editedUser.invalid?'disable':'unable'"  [disabled]="editedUser.invalid" (click)="save(inputdata.user)">save</button>
 
     <button mat-raised-button style="color: red; " (click)="closePopup()">close</button>
 </div>
