@@ -1,5 +1,5 @@
 <mat-card>
-    <button mat-raised-button> <i class="tmaerial-icons" (click)="addUserPopup()">Add User</i>
+    <button mat-raised-button> <i class="maerial-icons" (click)="addUserPopup()">Add User</i>
     </button>
 </mat-card>
 
@@ -23,7 +23,7 @@
             </button>
 
             <button mat-raised-button class="mat-mini-fab" style="color: red; border-color: red; "><i
-                    class="material-icons">delete</i>
+                    class="material-icons" (click)="deleteUser(User,i)">delete</i>
             </button>
         </mat-card-actions>
 

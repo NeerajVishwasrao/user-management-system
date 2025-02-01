@@ -4,12 +4,31 @@ import { PageEvent } from '@angular/material/paginator';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { UserModelComponent } from '../models/edit-user/user-model.component';
 import { AddUserComponent } from '../models/add-user/add-user.component';
+import { DeleteUserComponent } from '../models/delete-user/delete-user.component';
 @Component({
   selector: 'app-user-config',
   templateUrl: './user-config.component.html',
   styleUrls: ['./user-config.component.css']
 })
 export class UserConfigComponent implements OnInit {
+  deleteUser(deleteUser: User, i: number) {
+    let deleteUserModel = this.dialog.open(DeleteUserComponent, {
+      width: '60%',
+      height: '400px',
+
+      data: {
+        user: deleteUser, index: i
+      }
+    })
+    deleteUserModel.afterClosed().subscribe((res) => {
+      if (res.isDelete) {
+        this.allUsers.splice(res.index,1)
+      } else {
+        console.log("not deleted");
+
+      }
+    })
+  }
   addUserPopup() {
     let addModel = this.dialog.open(AddUserComponent, {
       width: '60%',
