@@ -1,0 +1,38 @@
+<mat-card>
+    <button mat-raised-button> <i class="tmaerial-icons">Add User</i>
+    </button>
+</mat-card>
+
+
+<div class="row" style="display: flex; justify-content: center;">
+    <mat-card class="m-1 col-5" *ngFor="let User of allUsers let i = index">
+        <mat-card-header>
+            <img mat-card-avatar src="../../assets/img_avatar3.png">
+            <mat-card-title> user {{i+1}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div>name : {{User.name}}</div>
+            <div>email : {{User.email}}</div>
+            <div>role : {{User.role}}</div>
+
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-raised-button class="mat-mini-fab "> <i
+                    class="material-icons" (click)="openPoppup(User,i)">edit</i>
+            </button>
+            <button mat-raised-button class="mat-mini-fab" style="color: red; border-color: red; "><i
+                    class="material-icons">delete</i>
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+
+</div>
+<button class="btn btn-outline-secondary"> nex</button>
+<!-- <mat-paginator>next</mat-paginator> -->
+<mat-paginator [length]="allUsers.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10,]"
+    (page)="pageChanged($event)">
+    ></mat-paginator>
+
+

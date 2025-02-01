@@ -12,8 +12,7 @@ toggleSideBar() {
 }
   title = 'user-management-system';
 
-  isMobile = false;
-  opened = true; // This controls the state of the sidenav
+  opened = false; // This controls the state of the sidenav
 isExpanded: boolean=true;
 
   constructor(private breakpointObserver: BreakpointObserver) {}

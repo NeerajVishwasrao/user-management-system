@@ -1,0 +1,24 @@
+mat-card{
+    color: black;
+    background-color: white;
+}
+
+.mat-card-actions button {
+    margin: 5px;
+  }
+  
+  .mat-paginator {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .mat-card-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .mat-mini-fab {
+    margin: 0 5px;
+  }
+  
