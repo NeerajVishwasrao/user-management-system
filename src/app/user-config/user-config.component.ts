@@ -13,21 +13,21 @@ import { DeleteUserComponent } from '../models/delete-user/delete-user.component
 export class UserConfigComponent implements OnInit {
   sort() {
     console.log("sort");
-    
-    let property: keyof User = this.sortBy as keyof User; 
-  
+
+    let property: keyof User = this.sortBy as keyof User;
+
     this.filteredUsers.sort((a, b) => {
-      let valA = a[property]?.toString().toLowerCase() || ''; 
+      let valA = a[property]?.toString().toLowerCase() || '';
       let valB = b[property]?.toString().toLowerCase() || '';
-  
-      return valA.localeCompare(valB); 
+
+      return valA.localeCompare(valB);
     });
   }
-  
-showAll() {
-  this.filteredUsers = [...this.allUsers]; 
 
-}
+  showAll() {
+    this.filteredUsers = [...this.allUsers];
+
+  }
   deleteUser(deleteUser: User, i: number) {
     let deleteUserModel = this.dialog.open(DeleteUserComponent, {
       width: '60%',
@@ -40,6 +40,8 @@ showAll() {
     deleteUserModel.afterClosed().subscribe((res) => {
       if (res.isDelete) {
         this.allUsers.splice(res.index, 1)
+        this.filteredUsers=this.allUsers
+
       } else {
         console.log("not deleted");
 
@@ -57,6 +59,7 @@ showAll() {
     addModel.afterClosed().subscribe((user) => {
       if (user) {
         this.allUsers.push(user)
+        this.filteredUsers=this.allUsers
 
       }
     })
@@ -89,7 +92,7 @@ showAll() {
 
   searchName: string = ''; // Store the search query
   sortBy: string = ''; // Store the selected sorting property
-searchEmail:string='';
+  searchEmail: string = '';
   // Search Function
   searchUsers() {
     this.filteredUsers = this.allUsers.filter(user =>
@@ -97,7 +100,7 @@ searchEmail:string='';
       (this.searchEmail === '' || user.email.toLowerCase().includes(this.searchEmail.toLowerCase()))
     );
   }
-  
+
 
   name: string = "";
 
@@ -139,6 +142,7 @@ searchEmail:string='';
         this.editedUserIndex = modelRes.index
 
         this.allUsers[modelRes.index] = modelRes.editedUser
+        this.filteredUsers=this.allUsers
       }
 
     })
