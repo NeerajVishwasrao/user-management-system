@@ -9,6 +9,10 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
+  constructor(private ref: MatDialogRef<UserModelComponent>) { }
+
+  ngOnInit(): void {
+  }
 
   save() {
     if (this.User.valid) {
@@ -19,14 +23,12 @@ export class AddUserComponent implements OnInit {
     }
 
   }
+  
   close() {
     this.ref.close()
   }
 
-  constructor(private ref: MatDialogRef<UserModelComponent>) { }
 
-  ngOnInit(): void {
-  }
 
   User: FormGroup = new FormGroup({
     name: new FormControl("", [Validators.required]),

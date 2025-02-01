@@ -7,18 +7,18 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-toggleSideBar() {
-  this.opened = !this.opened
-}
+  toggleSideBar() {
+    this.opened = !this.opened
+  }
   title = 'user-management-system';
 
   opened = false; // This controls the state of the sidenav
-isExpanded: boolean=true;
+  isExpanded: boolean = true;
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit() {
   }
 
- 
+
 }

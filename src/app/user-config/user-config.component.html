@@ -18,7 +18,8 @@
     </div>
 
     <!-- Sorting Dropdown -->
-    <div class="col-12 col-md-4 d-flex justify-content-md-end mt-2 mt-md-0" style="background-color: rgb(124, 123, 120);">
+    <div class="col-12 col-md-4 d-flex justify-content-md-end mt-2 mt-md-0"
+      style="background-color: rgb(124, 123, 120);">
       <mat-form-field class="w-100" appearance="outline" color="primary">
         <mat-label>Sort by</mat-label>
         <mat-select [(ngModel)]="sortBy" (selectionChange)="sort()">
@@ -26,12 +27,12 @@
           <mat-option value="email">Email</mat-option>
         </mat-select>
       </mat-form-field>
-      
+
     </div>
   </div>
 </mat-card>
 
-
+<!-- user cards  -->
 <div class="row" style="display: flex; justify-content: center;">
   <mat-card class="m-2 col-5" *ngFor="let User of filteredUsers let i = index">
     <mat-card-header>
@@ -58,8 +59,9 @@
   </mat-card>
 
 </div>
+
+<!-- pegination -->
+
 <button class="btn btn-outline-secondary"> nex</button>
-<!-- <mat-paginator>next</mat-paginator> -->
-<mat-paginator [length]="allUsers.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10,]"
-  (page)="pageChanged($event)">
+<mat-paginator [length]="allUsers.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10,]">
   ></mat-paginator>
