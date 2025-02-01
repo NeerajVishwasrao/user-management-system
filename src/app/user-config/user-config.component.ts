@@ -2,13 +2,26 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { User } from '../constant-data';
 import { PageEvent } from '@angular/material/paginator';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { UserModelComponent } from '../models/user-model/user-model.component';
+import { UserModelComponent } from '../models/edit-user/user-model.component';
+import { AddUserComponent } from '../models/add-user/add-user.component';
 @Component({
   selector: 'app-user-config',
   templateUrl: './user-config.component.html',
   styleUrls: ['./user-config.component.css']
 })
 export class UserConfigComponent implements OnInit {
+  addUserPopup() {
+    let addModel = this.dialog.open(AddUserComponent, {
+      width: '60%',
+      height: '400px',
+
+      data: {
+      }
+    })
+    addModel.afterClosed().subscribe((user) => {
+      this.allUsers.push(user)
+    })
+  }
   animal: any;
 
   constructor(public dialog: MatDialog) { }
@@ -57,7 +70,7 @@ export class UserConfigComponent implements OnInit {
   editedUser: User | undefined
   editedUserIndex: number = 0
 
-  openPoppup(oneuser: User, i: number) {
+  openEditPoppup(oneuser: User, i: number) {
     let popup = this.dialog.open(UserModelComponent, {
       width: '60%',
       height: '400px',
@@ -70,7 +83,7 @@ export class UserConfigComponent implements OnInit {
       this.editedUser = modelRes.editedUser
       this.editedUserIndex = modelRes.index
 
-      this.allUsers[modelRes.index]=modelRes.editedUser
+      this.allUsers[modelRes.index] = modelRes.editedUser
     })
   }
 }

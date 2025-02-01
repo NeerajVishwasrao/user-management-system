@@ -14,18 +14,20 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
-import { UserModelComponent } from './models/user-model/user-model.component';
+import { UserModelComponent } from './models/edit-user/user-model.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddUserComponent } from './models/user-model/add-user/add-user.component';
+import { AddUserComponent } from './models/add-user/add-user.component';
+import { DeleteUserComponent } from './models/delete-user/delete-user.component';
 @NgModule({
   declarations: [
     AppComponent,
     UserConfigComponent,
     UserModelComponent,
-    AddUserComponent
+    AddUserComponent,
+    DeleteUserComponent,
   ],
   imports: [
     BrowserModule,
