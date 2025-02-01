@@ -9,11 +9,18 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class UserModelComponent implements OnInit {
   inputdata: any
+  editedUser!: FormGroup
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private ref: MatDialogRef<UserModelComponent>) { }
 
   ngOnInit(): void {
     this.inputdata = this.data;
+
+    this.editedUser = new FormGroup({
+      name: new FormControl(this.inputdata.user.name, [Validators.required]),
+      email: new FormControl(this.inputdata.user.email, [Validators.required, Validators.email]),
+      role: new FormControl(this.inputdata.user.role, [Validators.required]),
+    })
   }
   save(user: any) {
     console.log(this.editedUser.value);
@@ -33,11 +40,6 @@ export class UserModelComponent implements OnInit {
     }
 
   }
-  editedUser: FormGroup = new FormGroup({
-    name: new FormControl("", [Validators.required]),
-    email: new FormControl("", [Validators.required, Validators.email]),
-    role: new FormControl("", [Validators.required]),
-  })
 
   closePopup() {
     this.ref.close()

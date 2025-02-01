@@ -2,7 +2,7 @@
 <form [formGroup]="editedUser">
 <mat-form-field>
     <mat-label>Enter name</mat-label>
-    <input matInput [value]="inputdata.user.name" formControlName="name">
+    <input matInput  formControlName="name">
     <span *ngIf="editedUser.controls['name'].errors?.['required'] && editedUser.controls['name'].touched"> email is required</span>
 
 </mat-form-field>
@@ -19,7 +19,7 @@
 
 <mat-form-field>
     <mat-label>Enter email</mat-label>
-    <input matInput [value]="inputdata.user.email" formControlName="email">
+    <input matInput  formControlName="email">
     <span *ngIf="editedUser.controls['email'].errors?.['required'] && editedUser.controls['email'].touched"> email is required</span>
         <span *ngIf="editedUser.controls['email'].errors?.['email'] && editedUser.controls['email'].touched"> email format is wrong</span>
 

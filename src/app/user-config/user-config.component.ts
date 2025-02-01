@@ -24,7 +24,7 @@ export class UserConfigComponent implements OnInit {
   searchEmail: string = '';
   sortBy: string = '';
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getUsers();
@@ -53,17 +53,17 @@ export class UserConfigComponent implements OnInit {
     this.updatePagedUsers();
   }
 
-    updatePagedUsers() {
+  updatePagedUsers() {
     const startIndex = this.pageIndex * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.pagedUsers = this.filteredUsers.slice(startIndex, endIndex);
   }
 
   handlePageEvent(event: PageEvent) {
-    
+
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
-    console.log(event.pageSize," ",event.pageIndex);
+    console.log(event.pageSize, " ", event.pageIndex);
 
     this.updatePagedUsers();
   }

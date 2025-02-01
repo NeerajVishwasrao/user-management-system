@@ -21,4 +21,31 @@ mat-card{
   .mat-mini-fab {
     margin: 0 5px;
   }
+  .small-input {
+    width: 150px; /* Adjust width */
+    height: 30px; /* Adjust height */
+    font-size: 14px; /* Reduce text size */
+    padding: 4px 8px; /* Reduce padding */
+  }
+  .small-mat-form {
+    width: 150px; /* Reduce width */
+    font-size: 12px; /* Reduce text size */
+  }
+  
+  .small-mat-form .mat-select-trigger {
+    min-height: 30px; /* Reduce height */
+    padding: 4px 8px; /* Adjust padding */
+  }
+  
+  .small-mat-form .mat-form-field-wrapper {
+    padding: 0px; /* Remove extra padding */
+  }
+  
+  .small-mat-form .mat-select {
+    font-size: 12px; /* Reduce font size */
+  }
+  
+  .small-mat-form .mat-option {
+    font-size: 12px; /* Reduce dropdown option size */
+  }
   
