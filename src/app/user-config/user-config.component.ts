@@ -11,6 +11,14 @@ import { DeleteUserComponent } from '../models/delete-user/delete-user.component
   styleUrls: ['./user-config.component.css']
 })
 export class UserConfigComponent implements OnInit {
+  filteredUsers: User[] = [] // Start with all users
+  allUsers: User[] = []
+  searchName: string = ''; // Store the search query
+  sortBy: string = ''; // Store the selected sorting property
+  searchEmail: string = '';
+  animal: any;
+
+  // Search Function
   sort() {
     console.log("sort");
 
@@ -40,7 +48,7 @@ export class UserConfigComponent implements OnInit {
     deleteUserModel.afterClosed().subscribe((res) => {
       if (res.isDelete) {
         this.allUsers.splice(res.index, 1)
-        this.filteredUsers=this.allUsers
+        this.filteredUsers = this.allUsers
 
       } else {
         console.log("not deleted");
@@ -59,41 +67,17 @@ export class UserConfigComponent implements OnInit {
     addModel.afterClosed().subscribe((user) => {
       if (user) {
         this.allUsers.push(user)
-        this.filteredUsers=this.allUsers
+        this.filteredUsers = this.allUsers
 
       }
     })
   }
-  animal: any;
 
   constructor(public dialog: MatDialog) { }
 
 
 
 
-  allUsers: User[] = [
-    { name: "niraj", email: "niraj@123", role: "Admin" },
-    { name: "ankush", email: "ankush@123", role: "User" },
-    { name: "jayesh", email: "jayesh@123", role: "Admin" },
-    { name: "kajal", email: "kajal@123", role: "User" },
-    { name: "avni", email: "avni@123", role: "User" },
-    { name: "ashwini", email: "ashwini@123", role: "Admin" },
-    { name: "subhash", email: "subhash@123", role: "User" },
-    { name: "dinesh", email: "dinesh@123", role: "User" },
-    { name: "rahul", email: "rahul@123", role: "Admin" },
-    { name: "aryan", email: "aryan@123", role: "User" },
-    { name: "aditya", email: "aditya@123", role: "Admin" },
-    { name: "sayli", email: "sayli@123", role: "User" },
-    { name: "akshada", email: "akshada@123", role: "Admin" },
-    { name: "swapnali", email: "swapnali@123", role: "User" },
-
-  ]
-  filteredUsers: User[] = [...this.allUsers]; // Start with all users
-
-  searchName: string = ''; // Store the search query
-  sortBy: string = ''; // Store the selected sorting property
-  searchEmail: string = '';
-  // Search Function
   searchUsers() {
     this.filteredUsers = this.allUsers.filter(user =>
       (this.searchName === '' || user.name.toLowerCase().includes(this.searchName.toLowerCase())) &&
@@ -109,6 +93,23 @@ export class UserConfigComponent implements OnInit {
   pagedUsers: any[] = [];
 
   ngOnInit() {
+    this.allUsers = [
+      { name: "niraj", email: "niraj@123", role: "Admin" },
+      { name: "ankush", email: "ankush@123", role: "User" },
+      { name: "jayesh", email: "jayesh@123", role: "Admin" },
+      { name: "kajal", email: "kajal@123", role: "User" },
+      { name: "avni", email: "avni@123", role: "User" },
+      { name: "ashwini", email: "ashwini@123", role: "Admin" },
+      { name: "subhash", email: "subhash@123", role: "User" },
+      { name: "dinesh", email: "dinesh@123", role: "User" },
+      { name: "rahul", email: "rahul@123", role: "Admin" },
+      { name: "aryan", email: "aryan@123", role: "User" },
+     
+
+    ]
+    this.filteredUsers = [...this.allUsers];
+
+
     this.loadPageData();
   }
 
@@ -142,7 +143,7 @@ export class UserConfigComponent implements OnInit {
         this.editedUserIndex = modelRes.index
 
         this.allUsers[modelRes.index] = modelRes.editedUser
-        this.filteredUsers=this.allUsers
+        this.filteredUsers = this.allUsers
       }
 
     })
