@@ -135,6 +135,9 @@ export class UserConfigComponent implements OnInit {
 
         this.allUsers[modelRes.index] = modelRes.editedUser 
         this.filteredUsers = this.allUsers 
-    })
+    }
+  })
+
+
   }
 }
