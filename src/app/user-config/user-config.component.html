@@ -32,36 +32,30 @@
   </div>
 </mat-card>
 
-<!-- user cards  -->
+<!-- User cards -->
 <div class="row" style="display: flex; justify-content: center;">
-  <mat-card class="m-2 col-md-5 col-sm-12" *ngFor="let User of filteredUsers let i = index">
+  <mat-card class="m-2 col-md-5 col-sm-12" *ngFor="let User of pagedUsers; let i = index">
     <mat-card-header>
       <img mat-card-avatar src="../../assets/img_avatar3.png">
-      <mat-card-title> user {{i+1}}</mat-card-title>
+      <mat-card-title> User {{ i + 1 + pageIndex * pageSize }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div>name : {{User.name}}</div>
-      <div>email : {{User.email}}</div>
-      <div>role : {{User.role}}</div>
-
+      <div>Name: {{ User.name }}</div>
+      <div>Email: {{ User.email }}</div>
+      <div>Role: {{ User.role }}</div>
     </mat-card-content>
-
     <mat-card-actions>
-      <button mat-raised-button class="mat-mini-fab "> <i class="material-icons"
-          (click)="openEditPoppup(User,i)">edit</i>
+      <button mat-mini-fab (click)="openEditPoppup(User,  i  + pageIndex * pageSize)">
+        <mat-icon>edit</mat-icon>
       </button>
-
-      <button mat-raised-button class="mat-mini-fab" style="color: red; border-color: red; "><i class="material-icons"
-          (click)="deleteUser(User,i)">delete</i>
+      <button mat-mini-fab color="warn" (click)="deleteUser(User,  i  + pageIndex * pageSize)">
+        <mat-icon>delete</mat-icon>
       </button>
     </mat-card-actions>
-
   </mat-card>
-
 </div>
 
-<!-- pegination -->
-
-<button class="btn btn-outline-secondary"> nex</button>
-<mat-paginator [length]="allUsers.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10,]">
-  ></mat-paginator>
+<!-- Pagination Component -->
+<mat-paginator [length]="filteredUsers.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]"
+  (page)="handlePageEvent($event)">
+</mat-paginator>
