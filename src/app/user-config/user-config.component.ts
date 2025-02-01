@@ -74,8 +74,8 @@ export class UserConfigComponent implements OnInit {
   // Delete user and handle dialog for confirmation
   deleteUser(deleteUser: User, i: number) {
     let deleteUserModel = this.dialog.open(DeleteUserComponent, {
-      width: '60%',
-      height: '400px',
+      width: '30%',
+      height: '170px',
       data: {
         user: deleteUser, index: i
       }
@@ -95,8 +95,8 @@ export class UserConfigComponent implements OnInit {
   // Open a dialog to add a new user
   addUserPopup() {
     let addModel = this.dialog.open(AddUserComponent, {
-      width: '60%',
-      height: '400px',
+      width: '30%',
+      height: '320px',
       data: {}
     })
 
@@ -120,8 +120,8 @@ export class UserConfigComponent implements OnInit {
   // Open the edit user dialog and update user data
   openEditPoppup(oneuser: User, i: number) {
     let popup = this.dialog.open(UserModelComponent, {
-      width: '60%',
-      height: '400px',
+      width: '30%',
+      height: '320px',
       data: {
         user: oneuser, index: i
       }
