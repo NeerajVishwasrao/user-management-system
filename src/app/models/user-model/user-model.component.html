@@ -1,11 +1,13 @@
+
+<form [formGroup]="editedUser">
 <mat-form-field>
     <mat-label>Enter name</mat-label>
-    <input matInput [value]="inputdata.user.name">
+    <input matInput [value]="inputdata.user.name" formControlName="name">
 </mat-form-field>
 
 <mat-form-field>
     <mat-label>Select</mat-label>
-    <mat-select>
+    <mat-select formControlName="role"> 
         <mat-option value="admin">Admin</mat-option>
         <mat-option value="user">User</mat-option>
     </mat-select>
@@ -13,11 +15,12 @@
 
 <mat-form-field>
     <mat-label>Enter email</mat-label>
-    <input matInput [value]="inputdata.user.email">
+    <input matInput [value]="inputdata.user.email" formControlName="email">
 </mat-form-field>
 
 <div mat-dialog-actions>
-    <button mat-raised-button style="color: green; background-color: white;" (click)="save()">save</button>
+    <button mat-raised-button style="color: green; background-color: white;" (click)="save(inputdata.user)">save</button>
 
     <button mat-raised-button style="color: red; " (click)="closePopup()">close</button>
 </div>
+</form>

@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { User } from '../constant-data';
 import { PageEvent } from '@angular/material/paginator';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { UserModelComponent } from './user-model/user-model.component';
+import { UserModelComponent } from '../models/user-model/user-model.component';
 @Component({
   selector: 'app-user-config',
   templateUrl: './user-config.component.html',
@@ -13,7 +13,7 @@ export class UserConfigComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
 
- 
+
 
 
   allUsers: User[] = [
@@ -54,15 +54,23 @@ export class UserConfigComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.loadPageData();
   }
+  editedUser: User | undefined
+  editedUserIndex: number = 0
 
-  openPoppup(oneuser:User,i:number){
-    this.dialog.open(UserModelComponent,{
-      width:'60%',
-      height:'400px',
+  openPoppup(oneuser: User, i: number) {
+    let popup = this.dialog.open(UserModelComponent, {
+      width: '60%',
+      height: '400px',
 
-      data:{
-        user: oneuser,index:i
+      data: {
+        user: oneuser, index: i
       }
+    })
+    popup.afterClosed().subscribe((modelRes) => {
+      this.editedUser = modelRes.editedUser
+      this.editedUserIndex = modelRes.index
+
+      this.allUsers[modelRes.index]=modelRes.editedUser
     })
   }
 }
